@@ -40,3 +40,6 @@ O João de barro é uma ave nativa da América do sul que constrói artesanalmen
 
  - Creative TIM pelo dashboard free Soft UI ![Site](https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html)
  - Favicon Generator pelos Favicons ![Site](https://realfavicongenerator.net/)
+
+## Quer contribuir?
+

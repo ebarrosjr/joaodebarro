@@ -38599,3 +38599,18 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.actions {
+  text-align: right;
+}
+
+.input-group .input-group-text {
+  background-color: rgba(255, 204, 102, 0.3333333333);
+}
+.input-group .input-group-text .select-addon {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.input-group .form-control {
+  padding-left: 7px !important;
+}

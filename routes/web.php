@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController};
+use App\Http\Controllers\{HomeController, UsersController};
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/resumo', [HomeController::class, 'index'])->name('home');
+Route::resource('users', UsersController::class);

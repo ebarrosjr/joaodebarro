@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
@@ -60,6 +62,38 @@ class LoginController extends Controller
             ],
         ]);
     }    
+
+    /** 
+     * @override Illuminate\Foundation\Auth\AuthenticatesUsers
+     * */
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            if ($request->hasSession()) {                
+                $request->session()->put('auth.password_confirmed_at', time());
+            }
+
+            // Store the last time logged
+            $user = User::find(auth()->user()->id);            
+            DB::table('users')->where('id', $user->id)->update([
+                'ultimo_login' => $user->login_atual,
+                'login_atual' => date('Y-m-d H:i:s')
+            ]);
+
+            return $this->sendLoginResponse($request);
+        }
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
 
     public function username()
     {

@@ -12,3 +12,20 @@
 
 // Custom CSS
 @import url('../css/app.css');
+
+.actions {
+    text-align: right;
+}
+.input-group {
+    .input-group-text {
+        background-color: #ffcc6655;
+        .select-addon {
+            background-color: transparent;
+            outline: none;
+            border: none;
+        }
+    }
+    .form-control {
+        padding-left: 7px !important;
+    }
+}
